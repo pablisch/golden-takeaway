@@ -23,24 +23,8 @@ Use the twilio-ruby gem to implement this next one. You will need to use doubles
 2. Design the Class System
 Consider diagramming out the classes and their relationships. Take care to focus on the details you see as important, not everything. The diagram below uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com
 
-┌────────────────────────────┐
-│ MusicPlayer                │
-│                            │
-│ - add(track)               │
-│ - all                      │
-│ - search_by_title(keyword) │
-│   => [tracks...]           │
-└───────────┬────────────────┘
-            │ owns a list of
-            ▼
-┌─────────────────────────┐
-│ Track(title, artist)    │
-│                         │
-│ - title                 │
-│ - artist                │
-│ - format                │
-│   => "TITLE by ARTIST"  │
-└─────────────────────────┘
+![takeaway project design](../images/takeaway_design_mk2.png)
+
 Also design the interface of each class in more detail.
 ```ruby
 class MusicLibrary
@@ -71,10 +55,11 @@ class Track
   end
 end
 ```
-3. Create Examples as Integration Tests
-Create examples of the classes being used together in different situations and combinations that reflect the ways in which the system will be used.
+1. Create Examples as Integration Tests
+
 
 # EXAMPLE
+> get menu with dishes => 
 ```ruby
 
 ```
