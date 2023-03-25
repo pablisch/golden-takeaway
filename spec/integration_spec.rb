@@ -1,4 +1,4 @@
-require "confirmation"
+require "customer_interface"
 require "dish"
 require "menu"
 require "order"

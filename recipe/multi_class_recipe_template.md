@@ -24,8 +24,8 @@ Use the twilio-ruby gem to implement this next one. You will need to use doubles
 ![takeaway project design](../images/takeaway_design_mk4.png)
 ## Integrated fuctionality to test
 ```ruby
-Menu .menu # returns an array with all Dish instances
-Order .order # returns an array with all ordered Dish instances
+# Menu .menu # returns an array with all Dish instances
+# Order .order # returns an array with all ordered Dish instances
 Order .text # sends a confimation text to the customer
 CustomerInterface .view_menu # outputs a user-friendly display of menu items
 CustomerInterface .view_order # outputs a user-friendly display of current order items
