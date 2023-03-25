@@ -21,8 +21,6 @@ Use the twilio-ruby gem to implement this next one. You will need to use doubles
 > I would like to [receive] a [text] such as "Thank you! Your [order] was [placed] and will be [delivered] before 18:52" after I have ordered.
 
 2. Design the Class System
-Consider diagramming out the classes and their relationships. Take care to focus on the details you see as important, not everything. The diagram below uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com
-
 ![takeaway project design](../images/takeaway_design_mk4.png)
 
 Also design the interface of each class in more detail.
