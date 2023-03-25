@@ -4,9 +4,7 @@ require_relative "./order"
 require_relative "./receipt"
 
 class CustomerInterface
-  def initialize(name, menu, order, receipt, mobile = 11234123456)
-    @name = name
-    @mobile = mobile
+  def initialize(menu, order, receipt)
     @menu = menu
     @order = order
     @receipt = receipt
@@ -35,20 +33,20 @@ class CustomerInterface
   end
 end
 
-menu = Menu.new
-dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
-menu.add(dish_1)
-menu.add(dish_2)
-menu.add(dish_3)
-menu.add(dish_4)
-order = Order.new
-order.add(dish_1)
-order.add(dish_2)
-order.add(dish_1)
-order.add(dish_4)
-receipt = Receipt.new(order)
-customer = CustomerInterface.new("Bob", menu, order, receipt)
-customer.view_receipt
+# menu = Menu.new
+# dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
+# dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
+# dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
+# dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
+# menu.add(dish_1)
+# menu.add(dish_2)
+# menu.add(dish_3)
+# menu.add(dish_4)
+# order = Order.new
+# order.add(dish_1)
+# order.add(dish_2)
+# order.add(dish_1)
+# order.add(dish_4)
+# receipt = Receipt.new(order)
+# customer = CustomerInterface.new(menu, order, receipt)
+# customer.view_receipt

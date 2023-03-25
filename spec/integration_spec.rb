@@ -8,8 +8,8 @@ RSpec.describe "takeaway integration" do
   context "view menu" do
     it "returns all items on menu #1" do
       menu = Menu.new
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
       menu.add(dish_1)
       menu.add(dish_2)
       expect(menu.get_menu).to eq [dish_1, dish_2]
@@ -17,10 +17,10 @@ RSpec.describe "takeaway integration" do
 
     it "returns all items on menu #2" do
       menu = Menu.new
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-      dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-      dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
       menu.add(dish_1)
       menu.add(dish_2)
       menu.add(dish_3)
@@ -32,10 +32,10 @@ RSpec.describe "takeaway integration" do
   context "view the current order" do
     it "returns a list of items on the current order #1" do
       menu = Menu.new
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-      dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-      dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
       menu.add(dish_1)
       menu.add(dish_2)
       menu.add(dish_3)
@@ -48,10 +48,10 @@ RSpec.describe "takeaway integration" do
 
     it "returns a list of items on the current order #2" do
       menu = Menu.new
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-      dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-      dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
       menu.add(dish_1)
       menu.add(dish_2)
       menu.add(dish_3)
@@ -74,7 +74,7 @@ RSpec.describe "takeaway integration" do
       menu.add(dish_2)
       order = Order.new
       receipt = Receipt.new(order)
-      customer = CustomerInterface.new("Bob", menu, order, receipt, 54321123456)
+      customer = CustomerInterface.new(menu, order, receipt)
       expect { customer.view_menu }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\n").to_stdout
     end
 
@@ -90,7 +90,7 @@ RSpec.describe "takeaway integration" do
       menu.add(dish_4)
       order = Order.new
       receipt = Receipt.new(order)
-      customer = CustomerInterface.new("Bob", menu, order, receipt, 54321123456)
+      customer = CustomerInterface.new(menu, order, receipt)
       expect { customer.view_menu }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\nPlain Rice ... £3.25\nCobra Lager ... £4.10\n").to_stdout
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe "takeaway integration" do
       order.add(dish_1)
       order.add(dish_1)
       receipt = Receipt.new(order)
-      customer = CustomerInterface.new("Bob", menu, order, receipt)
+      customer = CustomerInterface.new(menu, order, receipt)
       expect { customer.view_order }.to output("\n\u{1F374} \u{1F372} Your Golden Takeaway Order \u{1F372} \u{1F374}\n\n1 Channa Masala @ £6.50\n1 Channa Masala @ £6.50\n").to_stdout
     end
 
@@ -126,7 +126,7 @@ RSpec.describe "takeaway integration" do
       order.add(dish_1)
       order.add(dish_4)
       receipt = Receipt.new(order)
-      customer = CustomerInterface.new("Mazzy", menu, order, receipt, 54321987654)
+      customer = CustomerInterface.new(menu, order, receipt)
       expect { customer.view_order }.to output("\n\u{1F374} \u{1F372} Your Golden Takeaway Order \u{1F372} \u{1F374}\n\n1 Channa Masala @ £6.50\n1 Dal Makhani @ £6.00\n1 Channa Masala @ £6.50\n1 Cobra Lager @ £4.10\n").to_stdout
     end
   end
@@ -142,7 +142,7 @@ RSpec.describe "takeaway integration" do
       order.add(dish_1)
       order.add(dish_1)
       receipt = Receipt.new(order)
-      customer = CustomerInterface.new("Bob", menu, order, receipt)
+      customer = CustomerInterface.new(menu, order, receipt)
       expect { customer.view_receipt }.to output("\n\u{1F9FE} Your Golden Takeaway Receipt \u{1F9FE}\n\n1 Channa Masala @ £6.50\n1 Channa Masala @ £6.50\n\nTotal = £13.00\n\n\u{01F64F} Thank you \u{01F64F} \n\n").to_stdout
     end
 
@@ -162,7 +162,7 @@ RSpec.describe "takeaway integration" do
       order.add(dish_1)
       order.add(dish_4)
       receipt = Receipt.new(order)
-      customer = CustomerInterface.new("Mazzy", menu, order, receipt, 54321987654)
+      customer = CustomerInterface.new(menu, order, receipt)
       expect { customer.view_receipt }.to output("\n\u{1F9FE} Your Golden Takeaway Receipt \u{1F9FE}\n\n1 Channa Masala @ £6.50\n1 Dal Makhani @ £6.00\n1 Channa Masala @ £6.50\n1 Cobra Lager @ £4.10\n\nTotal = £23.10\n\n\u{01F64F} Thank you \u{01F64F} \n\n").to_stdout
     end
   end
