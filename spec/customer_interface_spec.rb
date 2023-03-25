@@ -1,4 +1,4 @@
-require "confirmation"
+require "customer_interface"
 
 RSpec.describe  do
   context "" do

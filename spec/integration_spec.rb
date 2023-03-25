@@ -64,4 +64,34 @@ RSpec.describe  do
       expect(order.get_order).to eq [dish_1, dish_2,dish_1, dish_4]
     end
   end
+
+  context "view menu in customer interface" do
+    it "returns a list of items on the current order #1" do
+      dish_1 = Dish.new("Channa Masala", 6.5)
+      dish_2 = Dish.new("Dal Makhani", 6)
+      menu = Menu.new
+      menu.add(dish_1)
+      menu.add(dish_2)
+      customer = CustomerInterface.new("Bob", 54321123456)
+      expect { customer.view_menu(menu) }.to output("Channa Masala ... £6.50\nDal Makhani\n£6.00").to_stdout
+    end
+
+    xit "returns a list of items on the current order #2" do
+      menu = Menu.new
+      dish_1 = Dish.new("Channa Masala", 6.5)
+      dish_2 = Dish.new("Dal Makhani", 6)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
+      menu.add(dish_1)
+      menu.add(dish_2)
+      menu.add(dish_3)
+      menu.add(dish_4)
+      order = Order.new
+      order.add(dish_1)
+      order.add(dish_2)
+      order.add(dish_1)
+      order.add(dish_4)
+      expect(order.get_order).to eq [dish_1, dish_2,dish_1, dish_4]
+    end
+  end
 end
