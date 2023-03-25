@@ -22,8 +22,19 @@ Use the twilio-ruby gem to implement this next one. You will need to use doubles
 
 2. Design the Class System
 ![takeaway project design](../images/takeaway_design_mk4.png)
+## Integrated fuctionality to test
+```bash
+Menu .menu returns an array with all Dish instances
+Order .order returns an array with all ordered Dish instances
+Order .text sends a confimation text to the customer
+CustomerInterface .view_menu outputs a user-friendly display of menu items
+CustomerInterface .view_order outputs a user-friendly display of current order items
+CustomerInterface .view_receipt outputs a user-friendly display of the receipt
+  - all ordered items plus a total
+CustomerInterface .build_order i/o a user-friendly interface to add order items
+Receipt .view_receipt returns an array of ordered items
+```
 
-Also design the interface of each class in more detail.
 ```ruby
 class Dish
   attr_reader :dish, :price
