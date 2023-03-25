@@ -2,8 +2,6 @@ require_relative "./dish"
 require_relative "./menu"
 
 class Order
-  attr_reader :order
-
   def initialize
     @order = []
   end
@@ -37,3 +35,6 @@ end
 # puts
 # print "order = "
 # p new_order
+
+# "\n🍴 🍲 Your Golden Takeaway Order 🍲 🍴\n\nChanna Masala @ £6.50\nChanna Masala @ £6.50\n"
+# "\n🍴 🍲 Your Golden Takeaway Order 🍲 🍴\n\n1 Channa Masala @ £6.50\n1 Channa Masala @ £6.50\n"

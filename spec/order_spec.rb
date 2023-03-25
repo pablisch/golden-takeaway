@@ -1,6 +1,6 @@
 require "order"
 
-RSpec.describe  do
+RSpec.describe Order do
   context "view the current order" do
     it "returns a list of items on the current order #1" do
       menu = double :menu

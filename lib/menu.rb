@@ -1,8 +1,6 @@
 require_relative "./dish"
 
 class Menu
-  attr_reader :menu
-
   def initialize
     @menu = []
   end

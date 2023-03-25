@@ -28,7 +28,7 @@ Use the twilio-ruby gem to implement this next one. You will need to use doubles
 # Order .order # returns an array with all ordered Dish instances
 Order .text # sends a confimation text to the customer
 # CustomerInterface .view_menu # outputs a user-friendly display of menu items
-CustomerInterface .view_order # outputs a user-friendly display of current order items
+# CustomerInterface .view_order # outputs a user-friendly display of current order items
 CustomerInterface .view_receipt # outputs a user-friendly display of the receipt
   # - all ordered items plus a total
 CustomerInterface .build_order # i/o a user-friendly interface to add order items

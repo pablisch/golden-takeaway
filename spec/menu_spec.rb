@@ -1,6 +1,6 @@
 require "menu"
 
-RSpec.describe  do
+RSpec.describe Menu do
   context "view menu" do
     it "fails with no items on menu" do
       menu = Menu.new

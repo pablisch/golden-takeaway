@@ -4,7 +4,7 @@ require "menu"
 require "order"
 require "receipt"
 
-RSpec.describe  do
+RSpec.describe "takeaway integration" do
   context "view menu" do
     it "returns all items on menu #1" do
       menu = Menu.new
@@ -65,55 +65,105 @@ RSpec.describe  do
     end
   end
 
-  context "view menu in customer interface" do
-    it "returns a list of items on the current order #1" do
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.5))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
+  context "output menu in customer interface" do
+    it "outputs menu to customer #1" do
+      dish_1 = Dish.new("Channa Masala", 6.5)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
       menu = Menu.new
       menu.add(dish_1)
       menu.add(dish_2)
-      customer = CustomerInterface.new("Bob", 54321123456)
-      expect { customer.view_menu(menu) }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\n").to_stdout
+      order = Order.new
+      receipt = Receipt.new(order)
+      customer = CustomerInterface.new("Bob", menu, order, receipt, 54321123456)
+      expect { customer.view_menu }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\n").to_stdout
     end
 
-    it "returns a list of items on the current order #2" do
+    it "outputs menu to customer #2" do
       menu = Menu.new
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-      dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-      dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
       menu.add(dish_1)
       menu.add(dish_2)
       menu.add(dish_3)
       menu.add(dish_4)
-      customer = CustomerInterface.new("Bob")
-      expect { customer.view_menu(menu) }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\nPlain Rice ... £3.25\nCobra Lager ... £4.10\n").to_stdout
+      order = Order.new
+      receipt = Receipt.new(order)
+      customer = CustomerInterface.new("Bob", menu, order, receipt, 54321123456)
+      expect { customer.view_menu }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\nPlain Rice ... £3.25\nCobra Lager ... £4.10\n").to_stdout
     end
   end
 
-  context "view menu in customer interface" do
-    xit "returns a list of items on the current order #1" do
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.5))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
+  context "output order in customer interface" do
+    it "outputs order to customer #1" do
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
       menu = Menu.new
       menu.add(dish_1)
       menu.add(dish_2)
-      customer = CustomerInterface.new("Bob", 54321123456)
-      expect { customer.view_menu(menu) }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\n").to_stdout
+      order = Order.new
+      order.add(dish_1)
+      order.add(dish_1)
+      receipt = Receipt.new(order)
+      customer = CustomerInterface.new("Bob", menu, order, receipt)
+      expect { customer.view_order }.to output("\n\u{1F374} \u{1F372} Your Golden Takeaway Order \u{1F372} \u{1F374}\n\n1 Channa Masala @ £6.50\n1 Channa Masala @ £6.50\n").to_stdout
     end
 
-    xit "returns a list of items on the current order #2" do
+    it "outputs order to customer #2" do
       menu = Menu.new
-      dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-      dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-      dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-      dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
       menu.add(dish_1)
       menu.add(dish_2)
       menu.add(dish_3)
       menu.add(dish_4)
-      customer = CustomerInterface.new("Bob")
-      expect { customer.view_menu(menu) }.to output("\n\u{1F49B} \u{2B50} Golden Takeaway Menu \u{2B50} \u{1F49B}\n\nChanna Masala ... £6.50\nDal Makhani ... £6.00\nPlain Rice ... £3.25\nCobra Lager ... £4.10\n").to_stdout
+      order = Order.new
+      order.add(dish_1)
+      order.add(dish_2)
+      order.add(dish_1)
+      order.add(dish_4)
+      receipt = Receipt.new(order)
+      customer = CustomerInterface.new("Mazzy", menu, order, receipt, 54321987654)
+      expect { customer.view_order }.to output("\n\u{1F374} \u{1F372} Your Golden Takeaway Order \u{1F372} \u{1F374}\n\n1 Channa Masala @ £6.50\n1 Dal Makhani @ £6.00\n1 Channa Masala @ £6.50\n1 Cobra Lager @ £4.10\n").to_stdout
+    end
+  end
+
+  context "output receipt in customer interface" do
+    it "outputs receipt to customer #1" do
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      menu = Menu.new
+      menu.add(dish_1)
+      menu.add(dish_2)
+      order = Order.new
+      order.add(dish_1)
+      order.add(dish_1)
+      receipt = Receipt.new(order)
+      customer = CustomerInterface.new("Bob", menu, order, receipt)
+      expect { customer.view_receipt }.to output("\n\u{1F9FE} Your Golden Takeaway Receipt \u{1F9FE}\n\n1 Channa Masala @ £6.50\n1 Channa Masala @ £6.50\n\nTotal = £13.00\n\n\u{01F64F} Thank you \u{01F64F} \n\n").to_stdout
+    end
+
+    it "outputs receipt to customer #2" do
+      menu = Menu.new
+      dish_1 = Dish.new("Channa Masala", 6.50)
+      dish_2 = Dish.new("Dal Makhani", 6.0)
+      dish_3 = Dish.new("Plain Rice", 3.25)
+      dish_4 = Dish.new("Cobra Lager", 4.1)
+      menu.add(dish_1)
+      menu.add(dish_2)
+      menu.add(dish_3)
+      menu.add(dish_4)
+      order = Order.new
+      order.add(dish_1)
+      order.add(dish_2)
+      order.add(dish_1)
+      order.add(dish_4)
+      receipt = Receipt.new(order)
+      customer = CustomerInterface.new("Mazzy", menu, order, receipt, 54321987654)
+      expect { customer.view_receipt }.to output("\n\u{1F9FE} Your Golden Takeaway Receipt \u{1F9FE}\n\n1 Channa Masala @ £6.50\n1 Dal Makhani @ £6.00\n1 Channa Masala @ £6.50\n1 Cobra Lager @ £4.10\n\nTotal = £23.10\n\n\u{01F64F} Thank you \u{01F64F} \n\n").to_stdout
     end
   end
 end
