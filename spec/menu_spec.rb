@@ -7,7 +7,7 @@ RSpec.describe  do
       expect { menu.get_menu }.to raise_error "Disappoitment is the only thing on the menu today."
     end
 
-    it "returns all items on menu" do
+    it "returns all items on menu #1" do
       menu = Menu.new
       dish_1 = double :dish        
       dish_2 = double :dish     
@@ -16,7 +16,7 @@ RSpec.describe  do
       expect(menu.get_menu).to eq [dish_1, dish_2]
     end
 
-    it "returns all items on menu" do
+    it "returns all items on menu #2" do
       menu = Menu.new
       dish_1 = double :dish      
       dish_2 = double :dish        
