@@ -13,6 +13,10 @@ class Order
   def get_order
     @order
   end
+
+  def cancel_order
+    @order = []
+  end
 end
 
 # my_menu = Menu.new
