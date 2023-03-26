@@ -3,6 +3,7 @@ require_relative "./menu"
 require_relative "./order"
 require_relative "./receipt"
 require_relative "./customer_interface"
+require_relative "./customer"
 
 $order_complete = false
 $order_in_progress = false
@@ -108,7 +109,7 @@ def order_menu_handler(customer, choice)
     order_menu(customer)
   elsif choice == "3" # complete order
     $order_complete = true
-    puts "--- complete order --- work in progress!"
+    complete_order(customer)
   elsif choice == "4" # cancel order
     customer.cancel_order
     puts "\nYour current order has been cancelled."
@@ -137,9 +138,45 @@ def add_menu(customer)
   order_menu(customer)
 end
 
-def complete_order
-  
+def complete_order(customer)
+  puts "Please enter your name: "
+  name = gets.chomp.capitalize
+  puts "Please enter your mobile number to receive a confirmation text: "
+  mobile = gets.chomp.delete(" ")
+  this_customer = Customer.new(name, mobile)
+  check_mobile(this_customer)
+  completed_menu(customer)
+end
 
+def completed_menu(customer)
+  puts "\n\u{1F372} YOUR ORDER IS COMPLETE\n\n"
+  puts "\nIf you entered a mobile number"
+  puts "    or enter [9] to return to the Order menu.\n\n"
+  add_choice = gets.chomp
+  customer.build_order(add_choice) unless add_choice == "9"
+  order_menu(customer)
+end
+
+def check_mobile(this_customer)
+  verified = this_customer.check_mobile(this_customer.mobile)
+  if verified == false
+    skip_mobile = false 
+    until skip_mobile == true
+      puts "Enter a mobile number to recieve text? [Y]/[N]"
+      mobile_attempt = gets.chomp.upcase
+      if mobile_attempt == "Y"   
+        puts "Please enter your mobile number: "
+        new_mobile = gets.chomp.delete(" ")
+        verify_again = this_customer.check_mobile(new_mobile)
+        if verify_again == true
+          this_customer.change_mobile(new_mobile)
+          skip_mobile = true
+        end
+      else
+        skip_mobile = true if mobile_attempt == "N"
+      end
+    end
+  end
 end
 
 loop do
