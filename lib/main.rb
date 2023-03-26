@@ -137,13 +137,22 @@ def add_menu(customer)
   order_menu(customer)
 end
 
-def add_menu_handler
+def complete_order
+  
 
 end
 
 loop do
   main_menu_choice = main_menu()
   main_menu_handler(customer, main_menu_choice)
+  if $order_complete == true
+    puts "\nThank you for your order."
+    puts "Are you ready to leave? [Y]"
+    if gets.chomp.upcase == "Y"
+      puts "\nGoodbye!"
+      exit
+    end
+  end
 end
 
 
