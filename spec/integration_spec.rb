@@ -3,6 +3,7 @@ require "dish"
 require "menu"
 require "order"
 require "receipt"
+require "customer"
 
 RSpec.describe "takeaway integration" do
   context "view menu" do
