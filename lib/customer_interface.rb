@@ -28,6 +28,10 @@ class CustomerInterface
     end 
   end
 
+  def show_order_array
+    @order.get_order
+  end
+
   def view_receipt
     puts "\n\u{1F9FE} Your Golden Takeaway Receipt \u{1F9FE}\n\n"
     @receipt.get_receipt.each { |item| puts "1 #{item.dish_name} @ £%.2f" % [item.price] }

@@ -43,7 +43,10 @@ menu.add(dish_12)
 menu.add(dish_13)
 menu.add(dish_14)
 
+def clear
+  system "clear"
 puts "\n\u{1F49B} Welcome to the wonderful Golden Takeaway \u{1F49B}\n"
+end
 
 def line(plus = false)
   puts if plus == true
@@ -55,8 +58,8 @@ def main_menu
   puts "Choose from the following options:"
   puts "    [1] View menu"
   puts "    [2] Start order" if $order_in_progress == false
-  puts "    [2] Continue with order" if $order_in_progress == true
-  puts "    [3] View order" if $order_in_progress == true
+  puts "    [2] Continue with order" if $order_in_progress == true && $order_complete == false
+  puts "    [3] View order" if $order_in_progress == true && $order_complete == false
   puts "    [4] View receipt" if $order_complete == true
   puts "    [9] Leave"
   puts
@@ -66,20 +69,27 @@ end
 def main_menu_handler(customer, choice)
   line()
   if choice == "1" # view menu
+    clear()
     customer.view_menu
     line()
-  elsif choice == "2" # start/continue order
+  elsif choice == "2" && $order_complete == false # start/continue order
+    clear()
     order_menu(customer)
     line()
-  elsif choice == "3" and $order_in_progress == true # view order
+  elsif choice == "3" and $order_in_progress == true && $order_complete == false # view order
+    clear()
     customer.view_order
     line(true)
   elsif choice == "4" and $order_complete == true # view receipt
+    clear()
     customer.view_receipt
     line()
+    main_menu()
   elsif choice == "9" # exit
+    clear()
     exit
   else 
+    clear()
     puts "\nPlease enter one of the options below.\n"
   end
 end
@@ -91,9 +101,9 @@ def order_menu(customer) # an instance of CustomerInterface
   puts "\nChoose from the following options:"
   puts "    [1] Add dish to order"
   puts "    [2] View order" 
-  puts "    [3] Complete order" 
-  puts "    [4] Cancel order" 
-  puts "    [5] Return to Main menu options" 
+  puts "    [3] Cancel order" 
+  puts "    [4] Return to Main menu options" 
+  puts "    [5] Complete order" unless customer.show_order_array.empty?
   puts "Or enter dish number to add directly to your order."
   puts
   order_menu_handler(customer, gets.chomp)
@@ -102,27 +112,35 @@ end
 def order_menu_handler(customer, choice)
   line()
   if choice == "1" # add item to order
+    clear()
     add_menu(customer)
   elsif choice == "2" # view order
+    clear()
     customer.view_order
     line(true)
     order_menu(customer)
-  elsif choice == "3" # complete order
+  elsif choice == "5" and !customer.show_order_array.empty? # complete order
+    clear()
     $order_complete = true
     complete_order(customer)
-  elsif choice == "4" # cancel order
+  elsif choice == "3" # cancel order
+    clear()
     customer.cancel_order
     puts "\nYour current order has been cancelled."
     order_menu(customer)
-  elsif choice == "5" # return to main menu
+  elsif choice == "4" # return to main menu
+    clear()
     puts "Returning to main menu options.\n"
   elsif choice == "9" # exit
+    clear()
     exit
   elsif choice.to_i > 9 # directly to add to menu
+    clear()
     customer.build_order(choice)
-    line()
+    line(true)
     order_menu(customer)
   else 
+    clear()
     puts "\nPlease enter one of the options below.\n"
     order_menu(customer)
   end
@@ -134,27 +152,46 @@ def add_menu(customer)
   puts "\nEnter the dish number to add it to your order"
   puts "    or enter [9] to return to the Order menu.\n\n"
   add_choice = gets.chomp
+  clear()
   customer.build_order(add_choice) unless add_choice == "9"
   order_menu(customer)
 end
 
 def complete_order(customer)
+  clear()
   puts "Please enter your name: "
   name = gets.chomp.capitalize
   puts "Please enter your mobile number to receive a confirmation text: "
   mobile = gets.chomp.delete(" ")
   this_customer = Customer.new(name, mobile)
   check_mobile(this_customer)
-  completed_menu(customer)
+  completed_menu(customer, this_customer)
 end
 
-def completed_menu(customer)
-  puts "\n\u{1F372} YOUR ORDER IS COMPLETE\n\n"
-  puts "\nIf you entered a mobile number"
-  puts "    or enter [9] to return to the Order menu.\n\n"
-  add_choice = gets.chomp
-  customer.build_order(add_choice) unless add_choice == "9"
-  order_menu(customer)
+def completed_menu(customer, this_customer)
+  clear()
+  puts "\n\u{1F372} YOUR ORDER IS COMPLETE, #{this_customer.name.split[0]}\n\n"
+  puts "A confirmation text has been sent.\n\n" if this_customer.verified == true
+  puts "    [1] View receipt"
+  puts "    [9] Leave"
+  completed_choice = gets.chomp
+  completed_menu_handler(customer, completed_choice)
+end
+
+def completed_menu_handler(customer, choice)
+  line()
+  if choice == "1" # view receipt
+    clear()
+    customer.view_receipt
+    main_menu()
+  elsif choice == "9" # exit
+    clear()
+    exit
+  else 
+    clear()
+    puts "\nPlease enter one of the options below.\n"
+    completed_menu_handler(customer, completed_choice)
+  end
 end
 
 def check_mobile(this_customer)
@@ -179,12 +216,15 @@ def check_mobile(this_customer)
   end
 end
 
+clear()
+
 loop do
   main_menu_choice = main_menu()
   main_menu_handler(customer, main_menu_choice)
   if $order_complete == true
     puts "\nThank you for your order."
     puts "Are you ready to leave? [Y]"
+    clear()
     if gets.chomp.upcase == "Y"
       puts "\nGoodbye!"
       exit
