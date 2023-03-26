@@ -21,7 +21,7 @@ Use the twilio-ruby gem to implement this next one. You will need to use doubles
 > I would like to [receive] a [text] such as "Thank you! Your [order] was [placed] and will be [delivered] before 18:52" after I have ordered.
 
 2. Design the Class System
-![takeaway project design](../images/takeaway_design_mk5.png)
+![takeaway project design](../images/takeaway_design_mk6.png)
 ## Integrated fuctionality to test
 ```ruby
 # Menu .menu # returns an array with all Dish instances
