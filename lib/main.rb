@@ -172,7 +172,12 @@ end
 def completed_menu(customer, this_customer)
   clear()
   puts "\n\u{1F372} YOUR ORDER IS COMPLETE, #{this_customer.name.split[0]}\n\n"
-  puts "A confirmation text has been sent.\n\n" if this_customer.verified == true
+  if this_customer.verified == true
+    mobile = this_customer.mobile
+    # customer.send_confirmation(mobile)
+    puts "A confirmation text has been sent.\n\n"
+  end
+
   puts "    [1] View receipt"
   puts "    [9] Leave"
   completed_choice = gets.chomp

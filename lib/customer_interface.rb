@@ -54,6 +54,11 @@ class CustomerInterface
   def cancel_order
     @order.cancel_order
   end
+
+  # def send_confirmation(mobile)
+  #   message = Message.new(mobile)
+  #   message.send_text
+  # end
 end
 
 # menu = Menu.new
