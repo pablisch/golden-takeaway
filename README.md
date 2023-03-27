@@ -2,6 +2,8 @@
 
 Makers main course end of week 2 individual challenge.
 
+> To run the code, run main.rb.
+
 Brief:
 
 # Solo Project
@@ -31,3 +33,15 @@ doubles too.
 Fair warning: if you push your Twilio API Key to a public GitHub repository,
 anyone will be able to see and use it. What are the security implications of
 that? How will you keep that information out of your repository?
+
+## Project Design
+
+![Project design](images/takeaway_design_mk7.png)
+
+## Partial Program Logic
+
+![Alt text](images/partial_program_logic.png)
+
+## Partial Order Logic
+
+![Alt text](images/partial_order_logic.png)
