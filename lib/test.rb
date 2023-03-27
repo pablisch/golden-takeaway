@@ -1,6 +1,4 @@
-require "twilio-ruby"
-require "date"
-# require "dotenv"
+require "dotenv/load"
 
 twi_ac_sid = ENV["TWI_AC_SID"]
 
