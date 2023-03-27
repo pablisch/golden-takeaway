@@ -4,6 +4,7 @@ require_relative "./order"
 require_relative "./receipt"
 require_relative "./customer_interface"
 require_relative "./customer"
+require_relative "./message"
 
 $order_complete = false
 $order_in_progress = false
