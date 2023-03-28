@@ -2,7 +2,7 @@
 
 Makers main course end of week 2 individual challenge.
 
-> To run the code, run main.rb.
+> To run the code, run app.rb.
 
 Brief:
 

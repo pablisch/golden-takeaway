@@ -55,26 +55,8 @@ class CustomerInterface
     @order.cancel_order
   end
 
-  # def send_confirmation(mobile)
-  #   message = Message.new(mobile)
-  #   message.send_text
-  # end
+  def send_confirmation(mobile)
+    message = Message.new(mobile)
+    message.send_text
+  end
 end
-
-# menu = Menu.new
-# dish_1 = Dish.new("Channa Masala", ("%.2f"% 6.50))
-# dish_2 = Dish.new("Dal Makhani", ("%.2f"% 6.0))
-# dish_3 = Dish.new("Plain Rice", ("%.2f"% 3.25))
-# dish_4 = Dish.new("Cobra Lager", ("%.2f"% 4.1))
-# menu.add(dish_1)
-# menu.add(dish_2)
-# menu.add(dish_3)
-# menu.add(dish_4)
-# order = Order.new
-# order.add(dish_1)
-# order.add(dish_2)
-# order.add(dish_1)
-# order.add(dish_4)
-# receipt = Receipt.new(order)
-# customer = CustomerInterface.new(menu, order, receipt)
-# customer.view_receipt
