@@ -174,7 +174,7 @@ def completed_menu(customer, this_customer)
   puts "\n\u{1F372} YOUR ORDER IS COMPLETE, #{this_customer.name.split[0]}\n\n"
   if this_customer.verified == true
     mobile = this_customer.mobile
-    # customer.send_confirmation(mobile)
+    customer.send_confirmation(mobile)
     puts "A confirmation text has been sent.\n\n"
   end
 
