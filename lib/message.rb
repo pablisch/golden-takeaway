@@ -16,9 +16,6 @@ class Message
   end
 
   def send_text
-    
-    # p @sender
-    # p @receiver
     client = Twilio::REST::Client.new(@sid, @auth)
     client.messages.create(
       from: @sender,

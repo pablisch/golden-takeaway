@@ -1,8 +1,34 @@
 # golden-takeaway
 
-Makers main course end of week 2 individual challenge.
+Makers main course end of week 2 individual challenge. As such it is a very early project and shows a snapshot of my skills at that time.
 
-> To run the code, run app.rb.
+## Requirements of thsi project
+
+Aside from Ruby, this app uses the following gems:
+**dotenv** to store environment variables
+To install dotenv, run `gem install dotenv`
+**twilio-ruby** to send SMS messages
+To install twilio-ruby, run `gem install twilio-ruby`
+
+The file will not run without a .env file since it is required in the message.rb file. 
+For the text message function to work, you will need to create a .env file in the root directory of the project and add the following environment variables to it:
+```bash
+TWILIO_ACCOUNT_SID=your_account_sid
+TWILIO_AUTH_TOKEN=your_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_phone_number
+```
+Note 1: the twilio phone number must be in the format "+441234567890"
+Note 2: twilio-ruby in this project uses a trial account and messages can only be sent to verified numbers. The number you want to send the message to must be verified in the twilio account.
+
+## Getting Started
+
+1. Clone this repo to your local machine.
+2. Run `bundle install` to install the required gems.
+3. Run `ruby lib/app.rb` to start the app in the terminal.
+
+## Running tests
+
+Run `rspec` to run the tests.
 
 Brief:
 
