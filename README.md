@@ -71,3 +71,20 @@ that? How will you keep that information out of your repository?
 ## Partial Order Logic
 
 ![Alt text](images/partial_order_logic.png)
+
+## Example use
+
+The main app menu:
+![main menu](images/main-menu.png)
+
+The dishes menu:
+![dishes menu](images/food-menu.png)
+
+The order menu:
+![order menu](images/order-menu.png)
+
+The current order:
+![current order](images/current-order.png)
+
+A completed order with text confirmation:
+![completed order](images/completed-order.png)
