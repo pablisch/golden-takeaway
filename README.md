@@ -2,7 +2,9 @@
 
 Makers main course end of week 2 individual challenge. As such it is a very early project and shows a snapshot of my skills at that time.
 
-## Requirements of thsi project
+[Getting started](#getting-started) | [Running tests](#running-tests) | [User stories](#user-stories) | [Project Design](#project-design) | [Partial Program Logic](#partial-program-logic) | [Partial Order Logic](#partial-order-logic) | [Example use](#example-use)
+
+## Requirements of this project
 
 Aside from Ruby, this app uses the following gems:
 **dotenv** to store environment variables
@@ -32,9 +34,7 @@ Run `rspec` to run the tests.
 
 Brief:
 
-# Solo Project
-
-Here is a project to test your golden square skills overall:
+## User stories
 
 > As a customer  
 > So that I can check if I want to order something  
