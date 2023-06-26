@@ -75,16 +75,16 @@ that? How will you keep that information out of your repository?
 ## Example use
 
 The main app menu:
-![main menu](images/main-menu.png)
+<img src="images/main-menu.png" alt="Main menu" style="width:450px">
 
 The dishes menu:
-![dishes menu](images/food-menu.png)
+<img src="images/food-menu.png" alt="Dishes menu" style="width:450px">
 
 The order menu:
-![order menu](images/order-menu.png)
+<img src="images/order-menu.png" alt="Order menu" style="width:450px">
 
 The current order:
-![current order](images/current-order.png)
+<img src="images/current-order.png" alt="Current order" style="width:450px">
 
 A completed order with text confirmation:
-![completed order](images/completed-order.png)
+<img src="images/completed-order.png" alt="Completed order" style="width:450px">
