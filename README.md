@@ -2,6 +2,13 @@
 
 Makers main course end of week 2 individual challenge. As such it is a very early project and shows a snapshot of my skills at that time.
 
+<p align="left">
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg" alt="ruby" width="40" height="40"/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rspec/rspec-original.svg" alt="rspec" width="40" height="40"/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="git" width="40" height="40"/>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="github" width="40" height="40"/>
+</p>
+
 [Getting started](#getting-started) | [Running tests](#running-tests) | [User stories](#user-stories) | [Project Design](#project-design) | [Partial Program Logic](#partial-program-logic) | [Partial Order Logic](#partial-order-logic) | [Example use](#example-use)
 
 ## Requirements of this project
